@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Login SITTA</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login SITTA-UT</h2>
+
+    <div class="input-group">
+        <span class="icon">✉️</span>
+        <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="input-group">
+        <span class="icon">🔑</span>
+        <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <button class="btn-orange" onclick="login()">Login</button>
+
+    <div class="links">
+        <a onclick="openForgot()">Lupa Password?</a> |
+        <a onclick="openRegister()">Daftar</a>
+    </div>
+
+    <!-- LOGIN GAGAL -->
+<div id="modalError" class="modal">
+    <div class="modal-content error">
+        <div class="error-icon">✖</div>
+        <h3>Login Gagal!</h3>
+        <p>Email atau password salah. Silakan coba lagi.</p>
+        <button onclick="closeError()">OK</button>
+    </div>
+</div>
+
+<!-- LUPA PASSWORD -->
+<div id="modalForgot" class="modal">
+    <div class="modal-content">
+        <h3>Lupa Password</h3>
+        <p>Silakan hubungi admin UPBJJ</p>
+        <button onclick="closeForgot()">Tutup</button>
+    </div>
+</div>
+
+<!-- DAFTAR -->
+<div id="modalRegister" class="modal">
+    <div class="modal-content">
+        <h3>Daftar Akun Baru</h3>
+        <input placeholder="Nama Lengkap">
+        <input placeholder="Email Baru">
+        <input placeholder="Password Baru">
+        <button onclick="closeRegister()">Tutup</button>
+    </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

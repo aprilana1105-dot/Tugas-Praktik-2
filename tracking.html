@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tracking Delivery Order</title>
+
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div id="app" class="container">
+
+  <h2>Tambah Delivery Order Baru</h2>
+
+  <div class="card">
+
+    <div class="form-row">
+      <label>Nomor DO</label>
+      <input type="text" v-model="newDONumber" disabled>
+    </div>
+
+    <div class="form-group">
+      <div class="form-row">
+        <label>NIM *</label>
+        <input type="text" v-model="form.nim" placeholder="Masukkan NIM">
+      </div>
+
+      <div class="form-row">
+        <label>Nama *</label>
+        <input type="text" v-model="form.nama" placeholder="Masukkan nama lengkap">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-row">
+        <label>Ekspedisi *</label>
+        <select v-model="form.ekspedisi">
+          <option disabled value="">-- pilih ekspedisi --</option>
+          <option v-for="e in upbjjList" :value="e">{{ e }}</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Paket Bahan Ajar *</label>
+        <select v-model="form.paket">
+          <option disabled value="">-- pilih paket --</option>
+          <option v-for="p in paketList" :value="p.kode">
+            {{ p.kode }} - {{ p.nama }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Tanggal Kirim</label>
+      <input type="date" v-model="form.tanggalKirim">
+    </div>
+
+    <div class="form-row">
+      <label>Total Harga</label>
+      <input type="text" :value="'Rp ' + totalHarga" disabled>
+    </div>
+
+    <!-- Detail Isi Paket -->
+    <div class="detail-box">
+      <h3>Detail Isi Paket</h3>
+      <ul v-if="selectedPaket">
+        <li v-for="item in selectedPaket.isi">{{ item }}</li>
+      </ul>
+      <p v-else>Silakan pilih paket untuk melihat detail.</p>
+    </div>
+
+    <div class="button-row">
+      <button @click="resetForm" class="btn-secondary">Reset</button>
+      <button @click="saveDO" class="btn-primary">Simpan DO</button>
+    </div>
+
+  </div>
+
+  <!-- TABEL TRACKING -->
+  <h2>Daftar Tracking DO</h2>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nomor DO</th>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Ekspedisi</th>
+          <th>Paket</th>
+          <th>Tanggal</th>
+          <th>Total Harga</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="(item, index) in trackingList" :key="item.nomorDO">
+          <td>{{ index + 1 }}</td>
+          <td>{{ item.nomorDO }}</td>
+          <td>{{ item.nim }}</td>
+          <td>{{ item.nama }}</td>
+          <td>{{ item.ekspedisi }}</td>
+          <td>{{ item.paket }}</td>
+          <td>{{ item.tanggalKirim }}</td>
+          <td>Rp {{ item.total }}</td>
+          <td>{{ item.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script src="js/tracking-app.js"></script>
+    
+</body>
+</html>
